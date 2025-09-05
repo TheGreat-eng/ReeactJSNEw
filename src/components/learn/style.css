@@ -1,0 +1,9 @@
+.my-component {
+    color: #16a34a;
+    /* Đổi màu chữ, ví dụ: xanh lá */
+}
+
+
+.child {
+    color: red;
+}

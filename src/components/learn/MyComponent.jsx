@@ -7,12 +7,12 @@
 // function MyComponent() {
 //   return <div>My Component</div>;
 // }
-
+import './style.css'
 const MyComponent = () => {
     return (
         <>
-            <div>My Component</div>
-            <div>Additional content</div>
+            <div className="my-component">My Component</div>
+            <div className="child">Additional content</div>
         </>
     );
 }
