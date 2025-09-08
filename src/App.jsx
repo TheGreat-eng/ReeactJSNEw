@@ -12,15 +12,23 @@ const App = () => {
     country: "USA"
   }
 
+  const addNewTodo = (name) => {
+    alert(`New Todo Added ${name}`);
+  }
+  // // Call the addNewTodo function
+  // addNewTodo();
+
   return (
     <div className="todo-container">
       <div className="todo-title">Todo List</div>
-      <TodoNew />
+      <TodoNew
+        addNewTodo={addNewTodo} />
 
       <TodoData
         name={hoidantit}
         age={age}
         data={data}
+
       />
       <div className="todo-image">
         <img src={reactLogo} className='logo' />
