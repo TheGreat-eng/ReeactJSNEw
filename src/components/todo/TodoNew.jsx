@@ -10,8 +10,7 @@ const TodoNew = (props) => {
 
 
     const handleAddClick = () => {
-        console.log(">>> Check handleAddClick: ", valueInput);
-
+        addNewTodo(valueInput);
     }
 
 
