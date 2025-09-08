@@ -8,13 +8,12 @@ const TodoData = (props) => {
             {todoList.map((item, index) => {
                 console.log(">>> Check map: ", item, index);
                 return (<div className="todo-item">
-                    <div >{index + 1} -
+                    <div >{item.id} - { }
                         {item.name}
                     </div>
                     <button>Delete X</button>
                 </div >)
             })}
-            <div>{JSON.stringify(todoList)}</div>
         </div >
     )
 }
