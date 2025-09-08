@@ -21,7 +21,7 @@ const MyComponent = () => {
             <div className="name">Name: {name.name}</div>
             <div className="age">Age: {name.age}</div>
             <div className="city">City: {name.city}</div>
-            <div>Object : {JSON.stringify(name)}</div>
+            <div className='object'>Object : {JSON.stringify(name)}</div>
         </>
     );
 }

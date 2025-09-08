@@ -1,51 +1,31 @@
-import { useState } from 'react'
+import './components/todo/todo.css'
+import TodoNew from './components/todo/TodoNew.jsx'
+import TodoData from './components/todo/TodoData.jsx'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import MyComponent from './components/learn/MyComponent.jsx'
-
-// import MyComponent from './components/learn/MyComponent.jsx'
-import SecondComponent from './components/learn/SecondComponent.jsx'
-
 const App = () => {
-  const [count, setCount] = useState(0)
 
-  // function myFunction() {
-  //   console.log("Hello from myFunction!");
-  // }
-
-  const myFunction = () => {
-    console.log(">>> RUN My arrow function!");
+  const hoidantit = "Eric";
+  const age = 22;
+  const data = {
+    age: 22,
+    city: "New York",
+    country: "USA"
   }
 
-  myFunction();
-
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="todo-container">
+      <div className="todo-title">Todo List</div>
+      <TodoNew />
+
+      <TodoData
+        name={hoidantit}
+        age={age}
+        data={data}
+      />
+      <div className="todo-image">
+        <img src={reactLogo} className='logo' />
       </div>
-      <h1>Hello World !!!</h1>
-      <MyComponent></MyComponent>
-      <SecondComponent />
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
