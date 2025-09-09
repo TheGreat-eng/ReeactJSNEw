@@ -13,12 +13,19 @@ import ProductPage from './pages/product.jsx';
 
 
 import './styles/global.css'
+import TodoApp from './components/todo/TodoApp.jsx';
+import ErrorPage from './pages/error.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
+      {
+        index: true,
+        element: <TodoApp />,
+      },
       {
         path: "/users",
         element: <UserPage />,
