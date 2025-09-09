@@ -8,6 +8,7 @@ const App = () => {
   const [todoList, setTodoList] = useState([
 
   ])
+
   // console.log(">>> Check todos: ", todos);
 
   const addNewTodo = (name) => {
@@ -17,6 +18,10 @@ const App = () => {
     }
 
     setTodoList([...todoList, newTodo]);
+  }
+
+  const handleDeleteTodo = (id) => {
+    setTodoList(todoList.filter(item => item.id !== id));
   }
 
   const randomIntFromInterval = (min, max) => { // min and max included
@@ -32,6 +37,7 @@ const App = () => {
       {todoList.length > 0 ? (
         <TodoData
           todoList={todoList}
+          handleDeleteTodo={handleDeleteTodo}
         />
       ) : (
         <div className="todo-image">
@@ -42,4 +48,4 @@ const App = () => {
   )
 }
 
-export default App
+export default App;
