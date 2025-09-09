@@ -1,0 +1,206 @@
+/* Modern Todo App Styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.todo-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.todo-title {
+    font-weight: 700;
+    font-size: 28px;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 25px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.todo-new {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.todo-new:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.todo-new:active {
+    transform: translateY(0);
+}
+
+.todo-new input[type="text"] {
+    border: 2px solid #e0e6ed;
+    border-radius: 25px;
+    padding: 12px 20px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.todo-new input[type="text"]:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.logo {
+    height: 8em;
+    padding: 2em;
+    will-change: filter;
+    transition: filter 300ms;
+    display: block;
+    margin: 0 auto;
+    opacity: 0.8;
+}
+
+.logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+    opacity: 1;
+}
+
+.logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .logo {
+        animation: logo-spin infinite 20s linear;
+    }
+}
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.todo-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.todo-item button {
+    background: linear-gradient(45deg, #ff4757, #ff3742);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 12px;
+}
+
+.todo-item button:hover {
+    background: linear-gradient(45deg, #ff3742, #ff2f3a);
+    transform: scale(1.05);
+}
+
+.todo-image {
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* Header Styles */
+header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 15px;
+}
+
+header h1 {
+    color: white;
+    font-size: 32px;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .todo-container {
+        margin: 0 15px;
+        padding: 20px;
+    }
+
+    .todo-title {
+        font-size: 24px;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+}
+
+/* Animation for todo items */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.todo-item {
+    animation: fadeInUp 0.5s ease;
+}
