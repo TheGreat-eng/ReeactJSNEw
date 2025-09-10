@@ -1,4 +1,4 @@
-import { Space, Table, Tag } from 'antd';
+import { Space, Table } from 'antd';
 import { fetchAllUserByApi } from '../../services/api.service';
 import { useState, useEffect } from 'react';
 
@@ -50,7 +50,7 @@ const UserTable = () => {
                 // Thêm key cho mỗi item để Ant Design Table hoạt động đúng
                 const usersWithKey = response.data.map(user => ({
                     ...user,
-                    key: user.id
+                    key: user._id // Sử dụng _id làm key nếu có
                 }));
                 setDataSource(usersWithKey);
             }
