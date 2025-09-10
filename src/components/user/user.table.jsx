@@ -1,4 +1,4 @@
-import { Space, Table } from 'antd';
+import { Space, Table, Button } from 'antd';
 import { fetchAllUserByApi } from '../../services/api.service';
 import { useState, useEffect } from 'react';
 
@@ -67,6 +67,9 @@ const UserTable = () => {
 
     return (
         <div style={{ padding: '20px' }}>
+            <div >
+
+            </div>
             <Table
                 columns={columns}
                 dataSource={dataSource}
