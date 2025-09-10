@@ -1,27 +1,29 @@
-ul {
-    list-style-type: none;
+.hoidanit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+    padding: 16px 0;
     margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
+    background: #43a047;
+    /* xanh lá cây */
+    border-bottom: 1px solid #388e3c;
 }
 
-li {
-    float: left;
+.hoidanit li {
+    font-size: 18px;
 }
 
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
+.hoidanit a {
     text-decoration: none;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
 }
 
-li a:hover:not(.active) {
-    background-color: #111;
-}
-
-.active {
-    background-color: #04AA6D;
+.hoidanit a.active,
+.hoidanit a:hover {
+    background: #388e3c;
 }
