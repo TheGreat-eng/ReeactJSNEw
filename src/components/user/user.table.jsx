@@ -1,89 +1,82 @@
 import { Space, Table, Tag } from 'antd';
-
-
-
-
-
-
-
-
-
+import { fetchAllUserByApi } from '../../services/api.service';
+import { useState, useEffect } from 'react';
 
 const UserTable = () => {
+    const [dataSource, setDataSource] = useState([]);
+    const [loading, setLoading] = useState(false);
+
     const columns = [
         {
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
+            title: 'ID',
+            dataIndex: '_id',
+            key: 'id',
+        },
+        {
+            title: 'Full Name',
+            dataIndex: 'fullName',
+            key: 'fullName',
             render: text => <a>{text}</a>,
         },
         {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
         },
         {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        },
-        {
-            title: 'Tags',
-            key: 'tags',
-            dataIndex: 'tags',
-            render: (_, { tags }) => (
-                <>
-                    {tags.map(tag => {
-                        let color = tag.length > 5 ? 'geekblue' : 'green';
-                        if (tag === 'loser') {
-                            color = 'volcano';
-                        }
-                        return (
-                            <Tag color={color} key={tag}>
-                                {tag.toUpperCase()}
-                            </Tag>
-                        );
-                    })}
-                </>
-            ),
+            title: 'Phone',
+            dataIndex: 'phone',
+            key: 'phone',
         },
         {
             title: 'Action',
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <a>Invite {record.name}</a>
+                    <a>Edit {record.fullName}</a>
                     <a>Delete</a>
                 </Space>
             ),
         },
     ];
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sydney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-        },
-    ];
+
+    const loadUser = async () => {
+        setLoading(true);
+        try {
+            const response = await fetchAllUserByApi();
+            console.log("Fetched users:", response);
+
+            if (response && response.data) {
+                // Thêm key cho mỗi item để Ant Design Table hoạt động đúng
+                const usersWithKey = response.data.map(user => ({
+                    ...user,
+                    key: user.id
+                }));
+                setDataSource(usersWithKey);
+            }
+        } catch (error) {
+            console.error("Error fetching users:", error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    useEffect(() => {
+        loadUser();
+    }, []);
 
     return (
-        <Table columns={columns} dataSource={data} />
+        <div style={{ padding: '20px' }}>
+            <Table
+                columns={columns}
+                dataSource={dataSource}
+                loading={loading}
+                pagination={{
+                    pageSize: 5,
+                    showTotal: (total) => `Total ${total} users`
+                }}
+            />
+        </div>
     )
 }
 
