@@ -1,0 +1,69 @@
+# Các khái niệm cần biết về React
+
+## 1. Component
+- Là khối xây dựng cơ bản của React.
+- Có thể là function component hoặc class component.
+- Mỗi component có thể nhận props và quản lý state riêng.
+
+## 2. JSX
+- Là cú pháp mở rộng cho JavaScript, cho phép viết HTML trong JavaScript.
+- Ví dụ: `<div>Hello React</div>`
+
+## 3. State
+- Là dữ liệu nội bộ của component, dùng để lưu trữ và quản lý thông tin thay đổi trong component.
+- Khi state thay đổi, component sẽ tự động re-render.
+- Khai báo state với hook useState:
+  ```jsx
+  const [count, setCount] = useState(0);
+  ```
+
+## 4. Props
+- Là dữ liệu truyền từ component cha xuống component con.
+- Props là immutable (không thể thay đổi trong component con).
+
+## 5. Hook cơ bản
+
+### useState
+- Dùng để khai báo và quản lý state trong function component.
+  ```jsx
+  const [value, setValue] = useState(initialValue);
+  ```
+
+### useEffect
+- Dùng để thực hiện các side effect (gọi API, thao tác DOM, v.v).
+  ```jsx
+  useEffect(() => {
+    // code chạy sau khi render
+  }, [dependency]);
+  ```
+
+### useRef
+- Dùng để tham chiếu tới một DOM element hoặc lưu giá trị không gây re-render.
+  ```jsx
+  const inputRef = useRef(null);
+  ```
+
+## 6. Lifecycle (vòng đời component)
+- React function component sử dụng useEffect để thay thế các lifecycle methods như componentDidMount, componentDidUpdate, componentWillUnmount.
+
+## 7. Event Handling
+- Xử lý sự kiện trong React sử dụng cú pháp camelCase.
+  ```jsx
+  <button onClick={handleClick}>Click me</button>
+  ```
+
+## 8. Conditional Rendering
+- Hiển thị nội dung dựa trên điều kiện.
+  ```jsx
+  {isLoggedIn ? <Logout /> : <Login />}
+  ```
+
+## 9. List Rendering
+- Dùng map để render danh sách.
+  ```jsx
+  {items.map(item => <li key={item.id}>{item.name}</li>)}
+  ```
+
+## 10. Key
+- Prop đặc biệt giúp React xác định phần tử nào thay đổi, thêm vào hoặc xóa khỏi danh sách.
+- Nên sử dụng giá trị duy nhất cho mỗi phần tử trong danh sách, thường là id của đối tượng.
