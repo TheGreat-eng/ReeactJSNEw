@@ -44,6 +44,17 @@ const fetchAllUserByApi = () => {
     });
 }
 
+const deleteUserById = (id) => {
+    const URL_BACKEND = `/api/v1/user/${id}`;
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc1NTQyMzAsImV4cCI6MTc1NzU5MDIzMH0.wtgRL717jwZbfY8mizN6BZcPugfdTLSGOhXv9VCpyxo";
+
+    return axios.delete(URL_BACKEND, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
 export {
-    createUserAPI, updateUserAPI, fetchAllUserByApi
+    createUserAPI, updateUserAPI, fetchAllUserByApi, deleteUserById
 };

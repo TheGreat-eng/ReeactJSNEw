@@ -2,13 +2,18 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Space, Table, Button } from 'antd';
 import UpdateUserModal from './update.user.modal';
 import { useEffect, useState } from 'react'; ``
+import ViewUserModal from './view.user.modal';
+import './user.table.css';
+
+import DeleteUser from './delete.user';
 
 const UserTable = (props) => {
     const { dataSource, loading, loadUser } = props;
     const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [dataUpdate, setDataUpdate] = useState(null);
-
-
+    const [viewData, setViewData] = useState(null);
+    const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+    const [idDelete, setIdDelete] = useState(null);
 
     const columns = [
         {
@@ -17,7 +22,9 @@ const UserTable = (props) => {
             key: 'id',
             render: (_, record) => {
                 return (
-                    <a href='#'>{record._id}</a>
+                    <a onClick={() => {
+                        setViewData(record);
+                    }}>{record._id}</a>
                 )
             }
         },
@@ -48,7 +55,12 @@ const UserTable = (props) => {
                     }}
                         style={{ color: 'blue', fontSize: 18, cursor: 'pointer' }}
                     />
-                    <DeleteOutlined style={{ color: 'red', fontSize: 18, cursor: 'pointer' }} />
+                    <DeleteOutlined
+                        onClick={() => {
+                            setIsDeleteOpen(true);
+                            setIdDelete(record._id);
+                        }}
+                        style={{ color: 'red', fontSize: 18, cursor: 'pointer' }} />
                 </Space>
             ),
         },
@@ -74,6 +86,17 @@ const UserTable = (props) => {
                 setIsUpdateOpen={setIsUpdateOpen}
                 dataUpdate={dataUpdate}
                 setDataUpdate={setDataUpdate}
+                loadUser={loadUser}
+            />
+            <ViewUserModal
+                viewData={viewData}
+                setViewData={setViewData}
+            />
+            <DeleteUser
+                isDeleteOpen={isDeleteOpen}
+                setIsDeleteOpen={setIsDeleteOpen}
+                idDelete={idDelete}
+                setIdDelete={setIdDelete}
                 loadUser={loadUser}
             />
         </>
