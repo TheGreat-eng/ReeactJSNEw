@@ -17,8 +17,20 @@ const createUserAPI = (fullName, email, password, phone) => {
     });
 }
 
-const updateUserAPI = () => {
+const updateUserAPI = (_id, fullName, phone) => {
+    const URL_BACKEND = "/api/v1/user";
+    const data = {
+        _id: _id,
+        fullName: fullName,
+        phone: phone
+    }
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc1NTQyMzAsImV4cCI6MTc1NzU5MDIzMH0.wtgRL717jwZbfY8mizN6BZcPugfdTLSGOhXv9VCpyxo";
 
+    return axios.put(URL_BACKEND, data, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
 }
 
 const fetchAllUserByApi = () => {

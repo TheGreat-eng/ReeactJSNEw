@@ -37,7 +37,7 @@ const UserPage = () => {
     return (
         <div>
             <UserForm loadUser={loadUser} />
-            <UserTable dataSource={dataSource} loading={loading} />
+            <UserTable dataSource={dataSource} loading={loading} loadUser={loadUser} />
         </div>
 
     )
