@@ -1,6 +1,6 @@
 import { deleteUserById } from '../../services/api.service';
 import { Modal, notification } from 'antd';
-import { useEffect, useState } from 'react';
+
 
 const DeleteUser = (props) => {
 
