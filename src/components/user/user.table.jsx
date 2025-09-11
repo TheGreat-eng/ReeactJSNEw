@@ -1,10 +1,9 @@
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Space, Table, Button } from 'antd';
-import { fetchAllUserByApi } from '../../services/api.service';
-import { useState, useEffect } from 'react';
+import UpdateUserModal from './update.user.modal';
 
-const UserTable = () => {
-    const [dataSource, setDataSource] = useState([]);
-    const [loading, setLoading] = useState(false);
+const UserTable = (props) => {
+    const { dataSource, loading } = props;
 
     const columns = [
         {
@@ -33,53 +32,34 @@ const UserTable = () => {
             key: 'action',
             render: (_, record) => (
                 <Space size="middle">
-                    <a>Edit {record.fullName}</a>
-                    <a>Delete</a>
+                    <EditOutlined style={{ color: 'blue', fontSize: 18, cursor: 'pointer' }} />
+                    <DeleteOutlined style={{ color: 'red', fontSize: 18, cursor: 'pointer' }} />
                 </Space>
             ),
         },
     ];
 
-    const loadUser = async () => {
-        setLoading(true);
-        try {
-            const response = await fetchAllUserByApi();
-            console.log("Fetched users:", response);
 
-            if (response && response.data) {
-                // Thêm key cho mỗi item để Ant Design Table hoạt động đúng
-                const usersWithKey = response.data.map(user => ({
-                    ...user,
-                    key: user._id // Sử dụng _id làm key nếu có
-                }));
-                setDataSource(usersWithKey);
-            }
-        } catch (error) {
-            console.error("Error fetching users:", error);
-        } finally {
-            setLoading(false);
-        }
-    }
 
-    useEffect(() => {
-        loadUser();
-    }, []);
+
+
+
 
     return (
-        <div style={{ padding: '20px' }}>
-            <div >
-
+        <>
+            <div style={{ padding: '20px' }}>
+                <Table
+                    columns={columns}
+                    dataSource={dataSource}
+                    loading={loading}
+                    pagination={{
+                        pageSize: 5,
+                        showTotal: (total) => `Total ${total} users`
+                    }}
+                />
             </div>
-            <Table
-                columns={columns}
-                dataSource={dataSource}
-                loading={loading}
-                pagination={{
-                    pageSize: 5,
-                    showTotal: (total) => `Total ${total} users`
-                }}
-            />
-        </div>
+            <UpdateUserModal />
+        </>
     )
 }
 

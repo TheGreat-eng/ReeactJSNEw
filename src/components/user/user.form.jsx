@@ -2,7 +2,8 @@ import { Button, Input, notification, Form, Modal } from "antd";
 import React, { useState } from "react";
 import { createUserAPI } from "../../services/api.service";
 
-const UserForm = () => {
+const UserForm = (props) => {
+    const { loadUser } = props; // destructure loadUser from props
     const [api, contextHolder] = notification.useNotification();
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -35,12 +36,8 @@ const UserForm = () => {
                 duration: 5
             });
 
-            // Reset form
-            setFullName("");
-            setEmail("");
-            setPassword("");
-            setPhone("");
-            setOpen(false);
+            resetAndCloseModal();
+            await loadUser();
         } catch (error) {
             api.error({
                 message: "❌ Create user failed",
@@ -52,6 +49,16 @@ const UserForm = () => {
             setLoading(false);
         }
     };
+
+    const resetAndCloseModal = () => {
+        // Reset form
+        setFullName("");
+        setEmail("");
+        setPassword("");
+        setPhone("");
+        setOpen(false);
+    }
+
 
     return (
         <>
@@ -81,7 +88,7 @@ const UserForm = () => {
                 title="Create User"
                 open={open}
                 onOk={handleSubmit}
-                onCancel={() => setOpen(false)}
+                onCancel={() => resetAndCloseModal()}
                 confirmLoading={loading}
                 maskClosable={false}
                 okText="Submit"

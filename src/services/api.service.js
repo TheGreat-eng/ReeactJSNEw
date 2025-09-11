@@ -8,7 +8,7 @@ const createUserAPI = (fullName, email, password, phone) => {
         password: password,
         phone: phone
     }
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGJmZTdmNzFmOGVlZTRhZjQxNDc1MWEiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc0NzA4NjEsImV4cCI6MTc1NzUwNjg2MX0.8X60wdYNOmAAgf1XNBExS9MW0lTI8_ZnLGyhvITvmD0";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc1NTQyMzAsImV4cCI6MTc1NzU5MDIzMH0.wtgRL717jwZbfY8mizN6BZcPugfdTLSGOhXv9VCpyxo";
 
     return axios.post(URL_BACKEND, data, {
         headers: {
@@ -23,7 +23,7 @@ const updateUserAPI = () => {
 
 const fetchAllUserByApi = () => {
     const URL_BACKEND = "/api/v1/user";
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGJmZTdmNzFmOGVlZTRhZjQxNDc1MWEiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc0NzA4NjEsImV4cCI6MTc1NzUwNjg2MX0.8X60wdYNOmAAgf1XNBExS9MW0lTI8_ZnLGyhvITvmD0";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc1NTQyMzAsImV4cCI6MTc1NzU5MDIzMH0.wtgRL717jwZbfY8mizN6BZcPugfdTLSGOhXv9VCpyxo";
 
     return axios.get(URL_BACKEND, {
         headers: {
