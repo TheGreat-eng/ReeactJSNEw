@@ -1,5 +1,6 @@
 import { Button, Modal } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
+import React, { useState } from "react";
 
 
 const ViewUserModal = (props) => {
@@ -8,6 +9,25 @@ const ViewUserModal = (props) => {
     // Debug để xem cấu trúc dữ liệu
     console.log("ViewData structure:", viewData);
 
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [previewUrl, setPreviewUrl] = useState(null);
+
+    const handleUploadAvatar = (event) => {
+        if (!event.target.files || event.target.files.length === 0) {
+            setSelectedFile(null);
+            setPreviewUrl(null);
+            return;
+        }
+
+        const file = event.target.files[0];
+        if (file) {
+            setSelectedFile(file);
+            setPreviewUrl(URL.createObjectURL(file));
+        }
+    };
+
+    console.log("Selected file:", selectedFile);
+    console.log("Preview URL:", previewUrl);
     return (
         <>
             <Modal
@@ -50,15 +70,26 @@ const ViewUserModal = (props) => {
                                     type="file"
                                     accept="image/*"
                                     style={{ display: 'none' }}
-                                    onChange={(e) => {
-                                        const file = e.target.files[0];
-                                        if (file) {
-                                            // Handle file upload
-                                        }
-                                    }}
+                                    onChange={handleUploadAvatar}
                                 />
 
                             </div>
+                            {previewUrl && (
+                                <img
+                                    src={previewUrl}
+                                    alt="User Avatar"
+                                    style={{
+                                        width: '120px',
+                                        height: '120px',
+                                        borderRadius: '50%',
+                                        objectFit: 'cover',
+                                        border: '2px solid #d9d9d9'
+                                    }}
+                                    onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        e.target.nextSibling.style.display = 'flex';
+                                    }}
+                                />)}
                         </div>
                         <div style={{ lineHeight: '2' }}>
                             <p><strong>ID:</strong> {viewData._id}</p>
