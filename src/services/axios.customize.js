@@ -1,15 +1,16 @@
 import axios from "axios";
 
 const instance = axios.create({
-    // You can set your base URL here
-    baseURL: "http://localhost:8080"
+    baseURL: import.meta.env.VITE_BASE_URL || "http://localhost:8080",
+    timeout: import.meta.env.VITE_API_TIMEOUT || 10000,
 });
-
-
 
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
     // Do something before request is sent
+    if (import.meta.env.VITE_DEBUG === 'true') {
+        console.log('Request config:', config);
+    }
     return config;
 }, function (error) {
     // Do something with request error
@@ -20,13 +21,19 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
+    if (import.meta.env.VITE_DEBUG === 'true') {
+        console.log('Response:', response);
+    }
+
     if (response.data && response.data.data) return response.data;
     return response;
 }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
+    if (import.meta.env.VITE_DEBUG === 'true') {
+        console.error('Response error:', error);
+    }
     return Promise.reject(error);
 });
-
 
 export default instance;

@@ -11,6 +11,7 @@ const UserPage = () => {
         loadUser();
     }, []);
 
+
     const loadUser = async () => {
         setLoading(true);
         try {
@@ -32,7 +33,7 @@ const UserPage = () => {
         }
     }
 
-    // lift up state : “Lift up state” trong React nghĩa là nâng state lên một component cha 
+    // lift up state : “Lift up state” trong React nghĩa là nâng state lên một component cha
     // để nhiều component con có thể dùng chung dữ liệu đó.
     return (
         <div>

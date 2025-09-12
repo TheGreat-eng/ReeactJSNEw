@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Space, Table, Button } from 'antd';
 import UpdateUserModal from './update.user.modal';
-import { useEffect, useState } from 'react'; ``
+import { useState } from 'react'; ``
 import ViewUserModal from './view.user.modal';
 import './user.table.css';
 
