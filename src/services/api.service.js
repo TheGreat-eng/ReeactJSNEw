@@ -8,7 +8,7 @@ const createUserAPI = (fullName, email, password, phone) => {
         password: password,
         phone: phone
     }
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc2NDA0NTYsImV4cCI6MTc1NzY3NjQ1Nn0.l6_Ij_eB0VyJCCmFYhuaAhhd_p6xC1ZlErk_fgk0RMs";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODAwNTI2MywiZXhwIjoxNzU4MDQxMjYzfQ.czU3YHgHBxDE-AfTNWYTjRqE352BCb5F4jEMCFa0JDo";
 
     return axios.post(URL_BACKEND, data, {
         headers: {
@@ -24,7 +24,7 @@ const updateUserAPI = (_id, fullName, phone) => {
         fullName: fullName,
         phone: phone
     }
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc2NDA0NTYsImV4cCI6MTc1NzY3NjQ1Nn0.l6_Ij_eB0VyJCCmFYhuaAhhd_p6xC1ZlErk_fgk0RMs";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODAwNTI2MywiZXhwIjoxNzU4MDQxMjYzfQ.czU3YHgHBxDE-AfTNWYTjRqE352BCb5F4jEMCFa0JDo";
 
     return axios.put(URL_BACKEND, data, {
         headers: {
@@ -34,8 +34,8 @@ const updateUserAPI = (_id, fullName, phone) => {
 }
 
 const fetchAllUserByApi = () => {
-    const URL_BACKEND = "/api/v1/user";
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc2NDA0NTYsImV4cCI6MTc1NzY3NjQ1Nn0.l6_Ij_eB0VyJCCmFYhuaAhhd_p6xC1ZlErk_fgk0RMs";
+    const URL_BACKEND = "/api/v1/user?current=1&pageSize=1";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODAwNTI2MywiZXhwIjoxNzU4MDQxMjYzfQ.czU3YHgHBxDE-AfTNWYTjRqE352BCb5F4jEMCFa0JDo";
 
     return axios.get(URL_BACKEND, {
         headers: {
@@ -46,7 +46,7 @@ const fetchAllUserByApi = () => {
 
 const deleteUserById = (id) => {
     const URL_BACKEND = `/api/v1/user/${id}`;
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiIyMTIzMmYyOTdhNTdhNWE3NDM4OTRhMGU0YTgwMWZjMy5wbmciLCJpYXQiOjE3NTc2NDA0NTYsImV4cCI6MTc1NzY3NjQ1Nn0.l6_Ij_eB0VyJCCmFYhuaAhhd_p6xC1ZlErk_fgk0RMs";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODAwNTI2MywiZXhwIjoxNzU4MDQxMjYzfQ.czU3YHgHBxDE-AfTNWYTjRqE352BCb5F4jEMCFa0JDo";
 
     return axios.delete(URL_BACKEND, {
         headers: {
@@ -55,6 +55,47 @@ const deleteUserById = (id) => {
     });
 }
 
+const handleUploadFile = (file, folder) => {
+    let config = {
+        headers: {
+            "upload-type": folder,
+            "   Content-Type": "multipart/form-data"
+        }
+    };
+    const formData = new FormData();
+    formData.append("fileImg", file);
+    const URL_BACKEND = "/api/v1/file/upload";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODAwNTI2MywiZXhwIjoxNzU4MDQxMjYzfQ.czU3YHgHBxDE-AfTNWYTjRqE352BCb5F4jEMCFa0JDo";
+
+
+    return axios.post(URL_BACKEND, formData, {
+        headers: {
+            ...config.headers,
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
+const updateUserAvatar = (avatarFilename, _id, fullName, phone) => {
+    const URL_BACKEND = `/api/v1/user`;
+    const data = {
+        _id: _id,
+        avatar: avatarFilename,
+        fullName: fullName,
+        phone: phone
+    };
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODAwNTI2MywiZXhwIjoxNzU4MDQxMjYzfQ.czU3YHgHBxDE-AfTNWYTjRqE352BCb5F4jEMCFa0JDo";
+
+    return axios.put(URL_BACKEND, data, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
+
+
+
 export {
-    createUserAPI, updateUserAPI, fetchAllUserByApi, deleteUserById
+    createUserAPI, updateUserAPI, fetchAllUserByApi,
+    deleteUserById, handleUploadFile, updateUserAvatar
 };

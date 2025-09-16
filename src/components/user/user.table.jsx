@@ -17,6 +17,12 @@ const UserTable = (props) => {
 
     const columns = [
         {
+            title: 'STT',
+            dataIndex: 'stt',
+            key: 'stt',
+            render: (_, __, index) => index + 1,
+        },
+        {
             title: 'ID',
             dataIndex: '_id',
             key: 'id',
@@ -75,7 +81,7 @@ const UserTable = (props) => {
                     columns={columns}
                     dataSource={dataSource}
                     loading={loading}
-                    pagination={{
+                    pagination={{ // phân trang 
                         pageSize: 5,
                         showTotal: (total) => `Total ${total} users`
                     }}
@@ -91,6 +97,7 @@ const UserTable = (props) => {
             <ViewUserModal
                 viewData={viewData}
                 setViewData={setViewData}
+                loadUser={loadUser}
             />
             <DeleteUser
                 isDeleteOpen={isDeleteOpen}
