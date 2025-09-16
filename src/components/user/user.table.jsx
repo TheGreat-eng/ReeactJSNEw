@@ -8,12 +8,19 @@ import './user.table.css';
 import DeleteUser from './delete.user';
 
 const UserTable = (props) => {
-    const { dataSource, loading, loadUser } = props;
+    const { dataSource, loading, loadUser,
+        currentPage, pageSize, total,
+        setCurrentPage, setPageSize, //setTotal
+    } = props;
     const [isUpdateOpen, setIsUpdateOpen] = useState(false);
     const [dataUpdate, setDataUpdate] = useState(null);
     const [viewData, setViewData] = useState(null);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
     const [idDelete, setIdDelete] = useState(null);
+
+    const onChange = (pagination, filters, sorter, extra) => {
+        console.log('params', { pagination, filters, sorter, extra });
+    }
 
     const columns = [
         {
@@ -81,10 +88,22 @@ const UserTable = (props) => {
                     columns={columns}
                     dataSource={dataSource}
                     loading={loading}
-                    pagination={{ // phân trang 
-                        pageSize: 5,
-                        showTotal: (total) => `Total ${total} users`
-                    }}
+                    pagination={
+                        { // phân trang
+                            // pageSize: 5,
+                            // showTotal: (total) => `Total ${total} users`
+                            current: currentPage,
+                            pageSize: pageSize,
+                            total: total,
+                            showSizeChanger: true,
+                            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+                            // onChange: (page, pageSize) => {
+                            //     setCurrent(page);
+                            //     setPageSize(pageSize);
+                            // }
+                        }
+                    }
+                    onChange={onChange}
                 />
             </div>
             <UpdateUserModal

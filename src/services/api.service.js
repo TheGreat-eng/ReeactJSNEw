@@ -33,8 +33,8 @@ const updateUserAPI = (_id, fullName, phone) => {
     });
 }
 
-const fetchAllUserByApi = () => {
-    const URL_BACKEND = "/api/v1/user?current=1&pageSize=1";
+const fetchAllUserByApi = (currentPage, pageSize) => {
+    const URL_BACKEND = `/api/v1/user?current=${currentPage}&pageSize=${pageSize}`;
     const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODAwNTI2MywiZXhwIjoxNzU4MDQxMjYzfQ.czU3YHgHBxDE-AfTNWYTjRqE352BCb5F4jEMCFa0JDo";
 
     return axios.get(URL_BACKEND, {
