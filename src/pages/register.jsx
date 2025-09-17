@@ -1,5 +1,3 @@
-import React from 'react';
-import { Form, Input, Button } from 'antd';
 
 const RegisterPage = () => {
     const onFinish = (values) => {
@@ -44,57 +42,8 @@ const RegisterPage = () => {
     };
 
     return (
-        <div style={containerStyle}>
-            <Form
-                name="register"
-                className="register-form"
-                initialValues={{ remember: true }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
-                style={formStyle}
-            >
-                <h2 style={titleStyle}>Register</h2>
-                <Form.Item
-                    label="Full Name"
-                    name="fullName"
-                    rules={[{ required: true, message: 'Please input your full name!' }]}
-                >
-                    <Input placeholder="Full Name" />
-                </Form.Item>
-
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    rules={[{ required: true, message: 'Please input your email!' }]}
-                >
-                    <Input placeholder="Email" />
-                </Form.Item>
-
-                <Form.Item
-                    label="Phone Number"
-                    name="phoneNumber"
-                    rules={[{ required: true, message: 'Please input your phone number!' }]}
-                >
-                    <Input placeholder="Phone Number" />
-                </Form.Item>
-
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                    <Input.Password placeholder="Password" />
-                </Form.Item>
-
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" style={buttonStyle}>
-                        Register
-                    </Button>
-                </Form.Item>
-            </Form>
-        </div>
-    );
-};
+        <h1>Register Page</h1>
+    )
+}
 
 export default RegisterPage;
