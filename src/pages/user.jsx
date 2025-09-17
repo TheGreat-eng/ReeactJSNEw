@@ -15,7 +15,7 @@ const UserPage = () => {
 
     useEffect(() => {
         loadUser();
-    }, []);
+    }, [currentPage, pageSize]);
 
 
     const loadUser = async () => {
@@ -41,6 +41,8 @@ const UserPage = () => {
             setLoading(false);
         }
     }
+
+    console.log("check currentPage:", currentPage);
 
     // lift up state : “Lift up state” trong React nghĩa là nâng state lên một component cha
     // để nhiều component con có thể dùng chung dữ liệu đó.
