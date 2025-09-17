@@ -19,6 +19,20 @@ const UserTable = (props) => {
     const [idDelete, setIdDelete] = useState(null);
 
     const onChange = (pagination, filters, sorter, extra) => {
+        // thay đổi trang
+        if (pagination && pagination.current) {
+            if (+pagination.current !== +currentPage) {
+                setCurrentPage(+pagination.current);
+            }
+        }
+        // thay đổi số item trên 1 trang
+        if (pagination && pagination.pageSize) {
+            if (+pagination.pageSize !== +pageSize) {
+                setPageSize(+pagination.pageSize);
+                setCurrentPage(1); // reset current page ve 1
+            }
+        }
+
         console.log('params', { pagination, filters, sorter, extra });
     }
 
@@ -27,7 +41,7 @@ const UserTable = (props) => {
             title: 'STT',
             dataIndex: 'stt',
             key: 'stt',
-            render: (_, __, index) => index + 1,
+            render: (_, __, index) => (index + 1) + (currentPage - 1) * pageSize,
         },
         {
             title: 'ID',
