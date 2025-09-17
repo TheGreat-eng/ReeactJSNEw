@@ -110,10 +110,24 @@ const registerUserAPI = (fullName, email, password, phone) => {
     });
 }
 
+const loginAPI = (username, password) => {
+    const URL_BACKEND = "/api/v1/auth/login";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODA4MzM2MSwiZXhwIjoxNzU4MTE5MzYxfQ.VSSy_d4OSSCZJsMS2SAeUSh2pyM2O3wOhgiFzz8CwOg";
+    const data = {
+        username: username,
+        password: password,
+        delay: 2000 // Giả lập độ trễ 5 giây
+    }
+    return axios.post(URL_BACKEND, data, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+}
 
 
 export {
     createUserAPI, updateUserAPI, fetchAllUserByApi,
     deleteUserById, handleUploadFile, updateUserAvatar,
-    registerUserAPI
+    registerUserAPI, loginAPI
 };
