@@ -1,10 +1,6 @@
 import Header from './components/layout/header.jsx'
 import Footer from './components/layout/footer.jsx'
 import { Outlet } from 'react-router-dom'
-import { App as AntApp } from 'antd'
-
-
-
 import { Spin } from 'antd';
 
 import { getAccountAPI } from './services/api.service.js';
@@ -12,30 +8,46 @@ import { useEffect } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from './components/context/auth.context.jsx';
 
-
 const App = () => {
 
-  const { setUser, isAppLoading,
-    setIsAppLoading
-  } = useContext(AuthContext);
-
-
-
+  const { setUser, isAppLoading, setIsAppLoading } = useContext(AuthContext);
 
   useEffect(() => {
     fetchUserInfor();
   }, []);
 
-  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
-
   const fetchUserInfor = async () => {
-    const res = await getAccountAPI();
-    await delay(2000);
-    if (res.data) {
-      setUser(res.data.user);
+    try {
+      // Kiểm tra xem có access_token trong localStorage không
+      const token = localStorage.getItem('access_token');
+
+      // if (!token) {
+      //   // Nếu không có token, set loading = false và không gọi API
+      //   setIsAppLoading(false);
+      //   return;
+      // }
+
+      // Chỉ gọi API khi có token
+      const res = await getAccountAPI();
+      if (res && res.data) {
+        setUser(res.data.user);
+      }
+    } catch (error) {
+      console.error('Error fetching user info:', error);
+      // Nếu có lỗi (token hết hạn, server lỗi), xóa token và reset user
+      localStorage.removeItem('access_token');
+      setUser({
+        email: "",
+        fullName: "",
+        phone: "",
+        avatar: "",
+        role: "",
+        _id: ""
+      });
+    } finally {
+      // Luôn set loading = false ở cuối
+      setIsAppLoading(false);
     }
-    setIsAppLoading(false);
   }
 
   return (
@@ -55,14 +67,13 @@ const App = () => {
         }}>
           <Spin size="large" tip="Loading..." />
         </div>
-      ) : <>
-        <Header />
-        <Outlet />
-        <Footer />
-      </>
-      }
-
-
+      ) : (
+        <>
+          <Header />
+          <Outlet />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
