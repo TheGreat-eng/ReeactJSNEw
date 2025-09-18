@@ -59,21 +59,50 @@ const Header = () => {
                 </a>
             ),
         },
+        {
+            label: 'Setting',
+            key: 'setting',
+            icon: <SettingOutlined />,
+            className: 'menu-setting-right', // Thêm dòng này
+            children: [
+                {
+                    label: <Link to="/login">Login</Link>,
+                    key: 'login',
+                },
+                {
+                    label: <Link to="/register">Register</Link>,
+                    key: 'register',
+                },
+            ],
+        },
+
     ];
 
     return (
-        <Menu
-            onClick={onClick}
-            selectedKeys={[current]}
-            mode="horizontal"
-            items={items}
-            style={{
-                backgroundColor: '#40a9ff', // Xanh dương nhạt, sáng hơn
-                color: '#fff',
-                fontWeight: 'bold'
-            }}
-            theme="dark"
-        />
+        <>
+            <style>
+                {`
+                    .menu-setting-right {
+                        margin-left: auto !important;
+                    }
+                    .ant-menu-horizontal > .menu-setting-right {
+                        float: right;
+                    }
+                `}
+            </style>
+            <Menu
+                onClick={onClick}
+                selectedKeys={[current]}
+                mode="horizontal"
+                items={items}
+                style={{
+                    backgroundColor: '#7640ffff',
+                    color: '#fff',
+                    fontWeight: 'bold'
+                }}
+                theme="dark"
+            />
+        </>
     );
 };
 
