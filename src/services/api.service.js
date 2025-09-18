@@ -8,7 +8,7 @@ const createUserAPI = (fullName, email, password, phone) => {
         password: password,
         phone: phone
     }
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODA4MzM2MSwiZXhwIjoxNzU4MTE5MzYxfQ.VSSy_d4OSSCZJsMS2SAeUSh2pyM2O3wOhgiFzz8CwOg";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODE2NDAyMiwiZXhwIjoxNzU4MjAwMDIyfQ.EZnFeF-v5YVIkgWoqJhh0nOPNDWMkIjOOerXlLxYTG4";
 
     return axios.post(URL_BACKEND, data, {
         headers: {
@@ -24,7 +24,7 @@ const updateUserAPI = (_id, fullName, phone) => {
         fullName: fullName,
         phone: phone
     }
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODA4MzM2MSwiZXhwIjoxNzU4MTE5MzYxfQ.VSSy_d4OSSCZJsMS2SAeUSh2pyM2O3wOhgiFzz8CwOg";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODE2NDAyMiwiZXhwIjoxNzU4MjAwMDIyfQ.EZnFeF-v5YVIkgWoqJhh0nOPNDWMkIjOOerXlLxYTG4";
 
     return axios.put(URL_BACKEND, data, {
         headers: {
@@ -35,7 +35,7 @@ const updateUserAPI = (_id, fullName, phone) => {
 
 const fetchAllUserByApi = (currentPage, pageSize) => {
     const URL_BACKEND = `/api/v1/user?current=${currentPage}&pageSize=${pageSize}`;
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODA4MzM2MSwiZXhwIjoxNzU4MTE5MzYxfQ.VSSy_d4OSSCZJsMS2SAeUSh2pyM2O3wOhgiFzz8CwOg";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODE2NDAyMiwiZXhwIjoxNzU4MjAwMDIyfQ.EZnFeF-v5YVIkgWoqJhh0nOPNDWMkIjOOerXlLxYTG4";
 
     return axios.get(URL_BACKEND, {
         headers: {
@@ -46,7 +46,7 @@ const fetchAllUserByApi = (currentPage, pageSize) => {
 
 const deleteUserById = (id) => {
     const URL_BACKEND = `/api/v1/user/${id}`;
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODA4MzM2MSwiZXhwIjoxNzU4MTE5MzYxfQ.VSSy_d4OSSCZJsMS2SAeUSh2pyM2O3wOhgiFzz8CwOg";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODE2NDAyMiwiZXhwIjoxNzU4MjAwMDIyfQ.EZnFeF-v5YVIkgWoqJhh0nOPNDWMkIjOOerXlLxYTG4";
 
     return axios.delete(URL_BACKEND, {
         headers: {
@@ -65,7 +65,7 @@ const handleUploadFile = (file, folder) => {
     const formData = new FormData();
     formData.append("fileImg", file);
     const URL_BACKEND = "/api/v1/file/upload";
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODA4MzM2MSwiZXhwIjoxNzU4MTE5MzYxfQ.VSSy_d4OSSCZJsMS2SAeUSh2pyM2O3wOhgiFzz8CwOg";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODE2NDAyMiwiZXhwIjoxNzU4MjAwMDIyfQ.EZnFeF-v5YVIkgWoqJhh0nOPNDWMkIjOOerXlLxYTG4";
 
 
     return axios.post(URL_BACKEND, formData, {
@@ -84,7 +84,7 @@ const updateUserAvatar = (avatarFilename, _id, fullName, phone) => {
         fullName: fullName,
         phone: phone
     };
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODA4MzM2MSwiZXhwIjoxNzU4MTE5MzYxfQ.VSSy_d4OSSCZJsMS2SAeUSh2pyM2O3wOhgiFzz8CwOg";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODE2NDAyMiwiZXhwIjoxNzU4MjAwMDIyfQ.EZnFeF-v5YVIkgWoqJhh0nOPNDWMkIjOOerXlLxYTG4";
 
     return axios.put(URL_BACKEND, data, {
         headers: {
@@ -101,7 +101,7 @@ const registerUserAPI = (fullName, email, password, phone) => {
         password: password,
         phone: phone
     }
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODA4MzM2MSwiZXhwIjoxNzU4MTE5MzYxfQ.VSSy_d4OSSCZJsMS2SAeUSh2pyM2O3wOhgiFzz8CwOg";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODE2NDAyMiwiZXhwIjoxNzU4MjAwMDIyfQ.EZnFeF-v5YVIkgWoqJhh0nOPNDWMkIjOOerXlLxYTG4";
 
     return axios.post(URL_BACKEND, data, {
         headers: {
@@ -112,7 +112,7 @@ const registerUserAPI = (fullName, email, password, phone) => {
 
 const loginAPI = (username, password) => {
     const URL_BACKEND = "/api/v1/auth/login";
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODA4MzM2MSwiZXhwIjoxNzU4MTE5MzYxfQ.VSSy_d4OSSCZJsMS2SAeUSh2pyM2O3wOhgiFzz8CwOg";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInBob25lIjoiMTIzNDU2Nzg5IiwiZnVsbE5hbWUiOiJJJ20gQWRtaW4iLCJyb2xlIjoiQURNSU4iLCJzdWIiOiI2OGMxMzY0NzI3YzlhNGQwNzE5ZTc5MDUiLCJhdmF0YXIiOiJwZXhlbHMtcGhvdG8tMTMxNTY1NS1lYjE2MmFhZTFiOGMyZTkzNGIwMTBmOWRmYzVlYzM3YmUuanBlZyIsImlhdCI6MTc1ODE2NDAyMiwiZXhwIjoxNzU4MjAwMDIyfQ.EZnFeF-v5YVIkgWoqJhh0nOPNDWMkIjOOerXlLxYTG4";
     const data = {
         username: username,
         password: password,

@@ -6,7 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-import { useState } from 'react';
+
+import { AuthContext } from '../components/context/auth.context.jsx';
+import { useContext, useState, } from 'react';
 import { loginAPI } from '../services/api.service';
 const { Title } = Typography;
 
@@ -14,6 +16,8 @@ const LoginPage = () => {
     const navigate = useNavigate();
     const [api, contextHolder] = notification.useNotification();
     const [loading, setLoading] = useState(false);
+
+    const { setUser } = useContext(AuthContext);
 
     const onFinish = async (values) => {
         console.log('Login values:', values);
@@ -26,7 +30,8 @@ const LoginPage = () => {
             if (res && res.data) {
 
                 // Lưu token vào localStorage
-                localStorage.setItem('token', res.data.token);
+                localStorage.setItem('access_token', res.data.access_token);
+                setUser(res.data.user);
                 api.success({
                     message: 'Login Successful!',
                     description: `Welcome back, ${values.username}!`,

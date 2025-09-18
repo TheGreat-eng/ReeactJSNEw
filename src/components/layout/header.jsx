@@ -1,11 +1,19 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { AppstoreOutlined, BookOutlined, HomeOutlined, MailOutlined, SettingOutlined, UserAddOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 
+
+
+
+import { AuthContext } from '../context/auth.context.jsx';
 const Header = () => {
     const [current, setCurrent] = useState('mail');
     const navigate = useNavigate();
+
+    const { user } = useContext(AuthContext);
+
+    console.log('Current user in Header:', user);
 
     const onClick = (e) => {
         console.log('click ', e);
