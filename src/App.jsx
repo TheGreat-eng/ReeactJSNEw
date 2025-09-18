@@ -42,7 +42,7 @@ const App = () => {
         phone: "",
         avatar: "",
         role: "",
-        _id: ""
+        id: ""
       });
     } finally {
       // Luôn set loading = false ở cuối

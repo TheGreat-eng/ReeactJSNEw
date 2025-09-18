@@ -28,7 +28,7 @@ const UserPage = () => {
                 // Thêm key cho mỗi item để Ant Design Table hoạt động đúng
                 const usersWithKey = response.data.result.map(user => ({
                     ...user,
-                    key: user._id // Sử dụng _id làm key nếu có
+                    key: user.id // Sử dụng _id làm key nếu có
                 }));
                 setDataSource(usersWithKey);
                 setCurrentPage(response.data.meta.current);

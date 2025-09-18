@@ -63,7 +63,7 @@ const Header = () => {
                 </a>
             ),
         },
-        ...(!user._id ? [{  // Đổi từ user.id thành user._id
+        ...(!user.id ? [{  // Đổi từ user.id thành user.id
             label: <Link to="/login">
                 Login
             </Link>,
@@ -71,7 +71,7 @@ const Header = () => {
             icon: <SettingOutlined />,
         }] : []),
 
-        ...(user._id ? [{  // Đổi từ user.id thành user._id
+        ...(user.id ? [{  // Đổi từ user.id thành user.id
             label: 'Welcome, ' + (user && user.fullName ? user.fullName : 'Guest'),
             key: 'logout',
             icon: <AliwangwangOutlined />,
