@@ -33,7 +33,7 @@ const UserTable = (props) => {
             }
         }
 
-        console.log('params', { pagination, filters, sorter, extra });
+        //console.log('params', { pagination, filters, sorter, extra });
     }
 
     const columns = [

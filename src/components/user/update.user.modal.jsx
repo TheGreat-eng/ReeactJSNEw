@@ -15,7 +15,7 @@ const UpdateUserModal = (props) => {
     const [api, contextHolder] = notification.useNotification();
 
     useEffect(() => {
-        console.log('Data update in modal: ', dataUpdate);
+        //console.log('Data update in modal: ', dataUpdate);
         if (dataUpdate) {
             setId(dataUpdate._id || "");
             setFullName(dataUpdate.fullName || "");

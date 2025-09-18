@@ -22,7 +22,7 @@ const UserPage = () => {
         setLoading(true);
         try {
             const response = await fetchAllUserByApi(currentPage, pageSize);
-            console.log("Fetched users:", response);
+            //console.log("Fetched users:", response);
 
             if (response && response.data) {
                 // Thêm key cho mỗi item để Ant Design Table hoạt động đúng
@@ -42,7 +42,7 @@ const UserPage = () => {
         }
     }
 
-    console.log("check currentPage:", currentPage);
+    //console.log("check currentPage:", currentPage);
 
     // lift up state : “Lift up state” trong React nghĩa là nâng state lên một component cha
     // để nhiều component con có thể dùng chung dữ liệu đó.

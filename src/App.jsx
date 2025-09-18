@@ -5,38 +5,66 @@ import { App as AntApp } from 'antd'
 
 
 
+import { Spin } from 'antd';
 
-
-const ParentComponent = (props) => {
-  console.log('Props in ParentComponent:', props);
-  return (
-    <div>
-      <div>Parent Component</div>
-      {props.children}
-    </div>
-  )
-}
-
-const ChildrenComponent = (props) => {
-  return (
-    <div>
-      Children Component
-    </div>
-  )
-}
+import { getAccountAPI } from './services/api.service.js';
+import { useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from './components/context/auth.context.jsx';
 
 
 const App = () => {
+
+  const { setUser, isAppLoading,
+    setIsAppLoading
+  } = useContext(AuthContext);
+
+
+
+
+  useEffect(() => {
+    fetchUserInfor();
+  }, []);
+
+  const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+
+  const fetchUserInfor = async () => {
+    const res = await getAccountAPI();
+    await delay(2000);
+    if (res.data) {
+      setUser(res.data.user);
+    }
+    setIsAppLoading(false);
+  }
+
   return (
     <>
-      {/* <ParentComponent >
-        <ChildrenComponent />
-      </ParentComponent> */}
-      <Header />
-      <Outlet />
-      <Footer />
+      {isAppLoading === true ? (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'rgba(255, 255, 255, 0.7)',
+          zIndex: 9999,
+        }}>
+          <Spin size="large" tip="Loading..." />
+        </div>
+      ) : <>
+        <Header />
+        <Outlet />
+        <Footer />
+      </>
+      }
+
+
     </>
-  )
+  );
 }
 
 export default App;

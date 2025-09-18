@@ -20,13 +20,13 @@ const LoginPage = () => {
     const { setUser } = useContext(AuthContext);
 
     const onFinish = async (values) => {
-        console.log('Login values:', values);
+        //console.log('Login values:', values);
 
         try {
             setLoading(true);
             // TODO: Thay thế bằng API call thực tế
             const res = await loginAPI(values.username, values.password);
-            console.log('Login response:', res);
+            //console.log('Login response:', res);
             if (res && res.data) {
 
                 // Lưu token vào localStorage
@@ -59,7 +59,7 @@ const LoginPage = () => {
     };
 
     const onFinishFailed = (errorInfo) => {
-        console.log('Login failed:', errorInfo);
+        //console.log('Login failed:', errorInfo);
     };
 
 
@@ -154,6 +154,11 @@ const LoginPage = () => {
                             prefix={<LockOutlined className="site-form-item-icon" />}
                             placeholder="Password"
                             style={inputStyle}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    onFinish();
+                                }
+                            }}
                         />
                     </Form.Item>
 

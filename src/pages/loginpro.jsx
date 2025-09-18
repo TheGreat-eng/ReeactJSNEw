@@ -10,7 +10,7 @@ const LoginPage = () => {
     const [api, contextHolder] = notification.useNotification();
 
     const onFinish = async (values) => {
-        console.log('Login values:', values);
+        //console.log('Login values:', values);
 
         try {
             // TODO: Thay thế bằng API call thực tế
@@ -40,7 +40,7 @@ const LoginPage = () => {
     };
 
     const onFinishFailed = (errorInfo) => {
-        console.log('Login failed:', errorInfo);
+        //console.log('Login failed:', errorInfo);
     };
 
     const containerStyle = {

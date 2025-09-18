@@ -17,10 +17,10 @@ const Header = () => {
 
     const { user } = useContext(AuthContext);
 
-    console.log('Current user in Header:', user);
+
 
     const onClick = (e) => {
-        console.log('click ', e);
+
         setCurrent(e.key);
 
         // Điều hướng dựa trên key

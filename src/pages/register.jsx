@@ -12,12 +12,12 @@ const RegisterPage = () => {
     const [api, contextHolder] = notification.useNotification();
 
     const onFinish = async (values) => {
-        console.log('Success:', values);
+        //console.log('Success:', values);
 
         try {
-            console.log('Calling API with:', values);
+            //console.log('Calling API with:', values);
             const res = await registerUserAPI(values.fullName, values.email, values.password, values.phoneNumber);
-            console.log('Registration response:', res);
+            //console.log('Registration response:', res);
 
             if (res && res.data) {
                 api.success({
@@ -59,7 +59,7 @@ const RegisterPage = () => {
     };
 
     const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        //console.log('Failed:', errorInfo);
     };
 
     const containerStyle = {
