@@ -2,7 +2,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Space, Table, Button } from 'antd';
 import UpdateUserModal from './update.user.modal';
 import { useState } from 'react'; ``
-import ViewUserModal from './view.user.modal';
+import ViewUserModal from './view.user.detail/';
 import './user.table.css';
 
 import DeleteUser from './delete.user';

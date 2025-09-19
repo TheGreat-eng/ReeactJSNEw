@@ -79,12 +79,37 @@ const loginAPI = (username, password) => {
 
 const getAccountAPI = () => {
     const URL_BACKEND = "/api/v1/auth/account";
-
     return axios.get(URL_BACKEND);
+}
+
+const logoutAPI = () => {
+    const URL_BACKEND = "/api/v1/auth/logout";
+    return axios.post(URL_BACKEND);
+}
+
+const fetchAllBooksByApi = (currentPage, pageSize) => {
+    const URL_BACKEND = `/api/v1/book?current=${currentPage}&pageSize=${pageSize}`;
+    return axios.get(URL_BACKEND);
+}
+
+const createBookAPI = (mainText, author, price, quantity, category, thumbnail) => {
+    const URL_BACKEND = "/api/v1/book";
+    const data = {
+        mainText: mainText,
+        author: author,
+        price: price,
+        quantity: quantity,
+        category: category,
+        thumbnail: thumbnail,
+        slider: [], // ← Thêm slider mặc định là array rỗng
+        sold: 0    // ← Thêm sold mặc định là 0
+    };
+    return axios.post(URL_BACKEND, data);
 }
 
 export {
     createUserAPI, updateUserAPI, fetchAllUserByApi,
     deleteUserById, handleUploadFile, updateUserAvatar,
-    registerUserAPI, loginAPI, getAccountAPI
+    registerUserAPI, loginAPI, getAccountAPI, logoutAPI,
+    fetchAllBooksByApi, createBookAPI
 };

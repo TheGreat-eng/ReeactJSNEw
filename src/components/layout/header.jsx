@@ -7,16 +7,47 @@ import {
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 
+import { logoutAPI } from '../../services/api.service.js';
 
 
 
 import { AuthContext } from '../context/auth.context.jsx';
 const Header = () => {
-    const [current, setCurrent] = useState('mail');
+    const [current, setCurrent] = useState('home'); // Đổi từ 'mail' thành 'home'
     const navigate = useNavigate();
 
-    const { user } = useContext(AuthContext);
+    const { user, setUser } = useContext(AuthContext);
 
+    const handleLogout = async () => {
+        try {
+            const res = await logoutAPI();
+            if (res && res.data) {
+                localStorage.removeItem('access_token');
+                setUser({
+                    email: "",
+                    fullName: "",
+                    phone: "",
+                    avatar: "",
+                    role: "",
+                    id: ""
+                });
+                window.location.href = '/';
+            }
+        } catch (error) {
+            console.error('Logout error:', error);
+            // Vẫn logout local nếu API fail
+            localStorage.removeItem('access_token');
+            setUser({
+                email: "",
+                fullName: "",
+                phone: "",
+                avatar: "",
+                role: "",
+                id: ""
+            });
+            window.location.href = '/';
+        }
+    }
 
 
     const onClick = (e) => {
@@ -77,7 +108,9 @@ const Header = () => {
             icon: <AliwangwangOutlined />,
             children: [
                 {
-                    label: 'Logout',
+                    label: <span onClick={() => handleLogout(
+
+                    )}>Log out</span>,
                     key: 'logout-action',
                     icon: <LogoutOutlined />,
                 }
