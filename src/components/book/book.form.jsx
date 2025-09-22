@@ -1,22 +1,58 @@
-import { Button, Modal, Form, Input, Upload, notification } from "antd";
+import { Button, Modal, Form, Input, Upload, notification, Select } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import { useState } from "react";
 
 import { handleUploadFile, createBookAPI } from "../../services/api.service";
 
-const BookForm = ({ loadBook }) => { // ← Nhận props loadBook từ BookPage
+const CATEGORY_OPTIONS = [
+    "Arts",
+    "Business",
+    "Comics",
+    "Cooking",
+    "Entertainment",
+    "History",
+    "Music",
+    "Sports",
+    "Travel"
+];
+
+const BookForm = (props) => {
+    // Quản lý trạng thái hiển thị Modal (true: mở, false: đóng)
     const [open, setOpen] = useState(false);
+
+    // Khởi tạo instance form của Ant Design để thao tác với form (reset, validate, ...)
     const [form] = Form.useForm();
+
+    // Quản lý trạng thái loading khi submit form (true: đang xử lý, false: bình thường)
     const [loading, setLoading] = useState(false);
+
+    // Lưu URL xem trước ảnh thumbnail khi người dùng chọn ảnh
     const [previewUrl, setPreviewUrl] = useState(null);
 
     // Notification
     const [api, contextHolder] = notification.useNotification();
 
+    const { loadBook } = props; // Hàm load lại danh sách sách từ component cha
+
+
     const onFinish = async (values) => {
+        /*
+            Là object chứa tất cả dữ liệu từ form khi submit
+            Được truyền vào từ onFinish function của Ant Design Form
+         */
         console.log("Form Values:", values);
+        /*Là một array chứa các file được upload
+        Ant Design Upload component luôn trả về array, ngay cả khi chỉ có 1 file
+        Có thể có giá trị: [{...}] hoặc undefined
+        Ant Design Upload component được thiết kế
+        để hỗ trợ multiple file upload từ đầu,
+        nên nó luôn trả về array để maintain consistency:
+        */
 
         const fileObj = values.thumbnail?.[0]?.originFileObj;
+        /*Safe navigation tiếp theo
+            originFileObj là thuộc tính của Ant Design Upload chứa File object gốc từ browser
+         Đây là native File API object của JavaScript */
         if (!fileObj) {
             api.error({
                 message: "Thiếu ảnh thumbnail!",
@@ -163,7 +199,14 @@ const BookForm = ({ loadBook }) => { // ← Nhận props loadBook từ BookPage
                         name="category"
                         rules={[{ required: true, message: "Please enter the category" }]}
                     >
-                        <Input placeholder="e.g. Fiction" maxLength={100} />
+                        <Select
+                            placeholder="Select a category"
+                            options={CATEGORY_OPTIONS.map(c => ({ value: c, label: c }))}
+                            showSearch
+                            filterOption={(input, option) =>
+                                option.label.toLowerCase().includes(input.toLowerCase())
+                            }
+                        />
                     </Form.Item>
 
                     <Form.Item
@@ -187,7 +230,7 @@ const BookForm = ({ loadBook }) => { // ← Nhận props loadBook từ BookPage
                             <Button icon={<UploadOutlined />}>Choose Image</Button>
                         </Upload>
                     </Form.Item>
-
+                    {/* Hiển thị ảnh xem trước */}
                     {previewUrl && (
                         <img
                             src={previewUrl}

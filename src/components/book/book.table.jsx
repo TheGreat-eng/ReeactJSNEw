@@ -1,70 +1,59 @@
-import { Table, Modal, Form, Input } from 'antd';
+import { Table, Modal, Form, Input, notification } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Popconfirm } from "antd";
 import { Space, Button } from 'antd';
-import { useEffect, useState } from "react";
-import { fetchAllBooksByApi } from "../../services/api.service";
+import { useState } from "react";
 import ViewBookDetail from './view.book.detail';
+import UpdateBookModal from './update.book.modal';
+import { deleteBookAPI } from '../../services/api.service'; // ✅ Import deleteBookAPI
 
-
-import CreateBook from './create.book';
-const BookTable = () => {
-
-
-
-
-    const [dataBook, setDataBook] = useState([]);
-    const [current, setCurrent] = useState(1);
-    const [pageSize, setPageSize] = useState(5);
-    const [total, setTotal] = useState(dataBook.length);
+const BookTable = (props) => {
+    const {
+        dataBook,
+        current,
+        pageSize,
+        total,
+        loading,
+        onPaginationChange,
+        loadBook
+    } = props;
 
     const [dataDetail, setDataDetail] = useState({});
     const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-
     const [dataUpdate, setDataUpdate] = useState({});
     const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
-    useEffect(
-        () => {
-            loadBook();
-        }, [current, pageSize] // ← Chạy lại khi current hoặc pageSize thay đổi
-    )
+    // ✅ Thêm notification cho delete
+    const [api, contextHolder] = notification.useNotification();
 
-    const loadBook = async () => {
-        const response = await fetchAllBooksByApi(current, pageSize);
-        console.log("Fetched books:", response);
-        if (response && response.data) {
-            setDataBook(response.data.result);
-            setTotal(response.data.meta.total);
-            setCurrent(response.data.meta.current);
-            setPageSize(response.data.meta.pageSize);
+    // ✅ Implement delete function hoàn chỉnh
+    const handleDelete = async (id) => {
+        try {
+            const response = await deleteBookAPI(id);
+            if (response?.data) {
+                api.success({
+                    message: "Xóa sách thành công!",
+                    description: "Sách đã được xóa khỏi hệ thống.",
+                    placement: "topRight"
+                });
+
+                // Reload danh sách sách
+                await loadBook();
+            }
+        } catch (error) {
+            console.error("Error deleting book:", error);
+            api.error({
+                message: "Xóa sách thất bại!",
+                description: error.response?.data?.message || error.message || "Đã có lỗi xảy ra.",
+                placement: "topRight"
+            });
         }
-    }
-
-    const handleDelete = (id) => {
-        // Xử lý logic xóa
-        console.log("Delete book with id:", id);
-        // Sau khi xóa thành công, tải lại danh sách sách
-        loadBook();
     }
 
     const onChange = (pagination, filters, sorter, extra) => {
-        // Chuyển trang
-        if (pagination && pagination.current) {
-            if (+pagination.current !== +current) {
-                setCurrent(+pagination.current);  // ← Cập nhật trang hiện tại
-            }
+        if (pagination && onPaginationChange) {
+            onPaginationChange(pagination.current, pagination.pageSize);
         }
-
-        // Thay đổi số item trên 1 trang  
-        if (pagination && pagination.pageSize) {
-            if (+pagination.pageSize !== +pageSize) {
-                setPageSize(+pagination.pageSize);  // ← Cập nhật pageSize
-                setCurrent(1);                      // ← Reset về trang 1
-            }
-        }
-
-        //console.log('params', { pagination, filters, sorter, extra });
     }
 
     const columns = [
@@ -94,7 +83,6 @@ const BookTable = () => {
         {
             title: 'Tiêu đề',
             dataIndex: 'mainText',
-
         },
         {
             title: 'Giá tiền',
@@ -129,20 +117,20 @@ const BookTable = () => {
                     <Button
                         type="text"
                         icon={<EditOutlined />}
-                        onClick={
-                            () => {
-                                setDataUpdate(record);
-                                setIsUpdateModalOpen(true);
-                            }
-                        }
+                        onClick={() => {
+                            setDataUpdate(record);
+                            setIsUpdateModalOpen(true);
+                        }}
                         style={{ color: '#faad14' }}
                         size="small"
                     />
                     <Popconfirm
                         title="Are you sure to delete this book?"
-                        onConfirm={() => handleDelete(record._id)}
+                        description="This action cannot be undone."
+                        onConfirm={() => handleDelete(record._id)} // ✅ Sử dụng async function
                         okText="Yes"
                         cancelText="No"
+                        okType="danger"
                     >
                         <Button
                             type="text"
@@ -159,10 +147,12 @@ const BookTable = () => {
 
     return (
         <>
+            {contextHolder} {/* ✅ Thêm contextHolder cho notification */}
             <div>
                 <Table
                     columns={columns}
                     dataSource={dataBook}
+                    loading={loading}
                     pagination={{
                         current: current,
                         pageSize: pageSize,
@@ -174,63 +164,22 @@ const BookTable = () => {
                 />
             </div>
 
-            {/* Thêm Modal Edit */}
-            <Modal
-                title="Edit Book"
-                open={isUpdateModalOpen}
-                onCancel={() => {
-                    setIsUpdateModalOpen(false);
-                    setDataUpdate({});
-                }}
-                onOk={() => {
-                    // Xử lý logic update
-                    console.log("Update book:", dataUpdate);
-                    setIsUpdateModalOpen(false);
-                }}
-            >
-                <Form layout="vertical">
-                    <Form.Item label="Title">
-                        <Input
-                            value={dataUpdate.mainText}
-                            onChange={(e) => setDataUpdate({ ...dataUpdate, mainText: e.target.value })}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Author">
-                        <Input
-                            value={dataUpdate.author}
-                            onChange={(e) => setDataUpdate({ ...dataUpdate, author: e.target.value })}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Price">
-                        <Input
-                            value={dataUpdate.price}
-                            onChange={(e) => setDataUpdate({ ...dataUpdate, price: e.target.value })}
-                        />
-                    </Form.Item>
-                    <Form.Item label="Quantity">
-                        <Input
-                            value={dataUpdate.quantity}
-                            onChange={(e) => setDataUpdate({ ...dataUpdate, quantity: e.target.value })}
-                        />
-                    </Form.Item>
-                </Form>
-            </Modal>
-
-
+            <UpdateBookModal
+                dataUpdate={dataUpdate}
+                setDataUpdate={setDataUpdate}
+                isUpdateModalOpen={isUpdateModalOpen}
+                setIsUpdateModalOpen={setIsUpdateModalOpen}
+                loadBook={loadBook}
+            />
 
             <ViewBookDetail
                 dataDetail={dataDetail}
                 isDetailModalOpen={isDetailModalOpen}
                 setIsDetailModalOpen={setIsDetailModalOpen}
             />
-
-            <CreateBook />
-
-
         </>
     )
 }
-
 
 export default BookTable;
 

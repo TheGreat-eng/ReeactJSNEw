@@ -17,6 +17,8 @@ import TodoApp from './components/todo/TodoApp.jsx';
 import ErrorPage from './pages/error.jsx';
 import { AuthWrapper } from './components/context/auth.context.jsx';
 import PrivateRoute from './pages/private.route.jsx';
+import Home from './components/todo/home.jsx';
+import 'nprogress/nprogress.css';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <TodoApp />,
+        element: <Home />,
       },
       {
         path: "/users",
